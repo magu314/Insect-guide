@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>http://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q1196444656</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<meta http-equiv="content-style-type" content="text/css">
+<style type="text/css"><!--
+/* 回答欄の囲い */
+body{
+	font-family:メイリオ；
+}
+li{
+	display:inline;
+	display:inline-block;
+	color:#ff0000;
+	}
+li.tab a{
+	display:inline-block;
+	padding:5px 15px;
+	border: 1px #258 solid;
+	color:#000000;
+	height:15px;
+	line-height:15px;
+	cursor:pointer;
+}
+li.tab a.selected {
+	color: #ff0000;
+	height:20px;
+	line-height:20px;
+	margin: 0px 0px 0px 5px;
+	cursor:default;
+	}
+.Q_Back{
+width: 620px;
+height: 400px;
+margin: 0px 0px 0px 0px;
+padding: 12px;
+border: solid 2px #258;
+border-radius:4px;
+background:#fff;
+}
+
+/* 質問番号 */
+.Q_Back .Q_No{
+width: auto;
+line-height: 24px;
+margin : 2px auto;
+padding: 0px;
+border-radius:5px;
+background: #258;
+color: #fff;
+font-size: 16px;
+font-weight: bold;
+text-align: center;
+}
+
+/* 質問文 */
+.Q_Back .Q{
+width: auto;
+height: 50px;
+margin : 40px 0px 0px 0px;
+padding: 0px;
+border: none;
+color: #666;
+font-size: 20px;
+text-align: center;
+}
+
+.Q_Back .under{
+width:650px;
+height: 300px;
+
+}
+/* 選択肢の囲い */
+.Q_Back ul.A{
+list-style: none;
+margin: auto;
+padding: 0px;
+text-align: center;
+}
+/* 選択肢 */
+.Q_Back li{
+display: inline-block;
+margin: 4px;
+padding: 0px;
+}
+
+/* 選択肢ボタン */
+.Q_Back a{
+display: block;
+width: 350px;
+height: 80px;
+line-height: 50px;
+margin: 0px 400px 0px 0px;
+color: #fff;
+font-size: 24px;
+text-align: cencenter;
+padding:40px 0 0 0;
+text-decoration:none;
+border-radius:30px;
+border:1px solid #29668f;
+background:#3F96B8;
+
+}
+.Q_Back a:hover{
+background:#20688A;
+}
+.fig{
+width:240px;
+height:260px;
+margin: -260px 30px 0px 0px;
+padding:1px;
+float: right;
+border: 1px solid #29668f;
+border-radius:10px;
+}
+.backQ{
+margin: 0px 0px 0px 0px;
+float:left;
+}
+
+.flow{
+	margin:0 90px;
+}
+
+--></style>
+
+<meta http-equiv="content-script-type" content="text/javascript">
+</head>
+
+<body>
+
+<script type="text/javascript"><!--
+/******** 設問リスト ********/
+var QList1 = new Array(
+{ /*設問0はありません！*/
+Q: "あああ<br>",
+A: new Array("a","b"),
+To: new Array( "0","0"),
+fig: "img/fig.png"
+},
+{ /*設問 1*/
+Q: "全長(頭～翅端)が20mm未満ですか？",
+A: new Array("○","×"),
+To: new Array( "6","2"),
+fig: "img/fig.png"
+},
+{ /*設問 2*/
+Q: "腹が露出する？",
+A: new Array("○","×"),
+To: new Array( "1","3"),
+fig: "img/fig.png"
+},
+{ /*設問 3*/
+Q: "後脚腿節に葉状突起があり前脚腿節の幅が広い？",
+A: new Array("○","×"),
+To: new Array( "kobetu.php?id=171","4"),
+fig: "img/fig.png"
+},
+{ /*設問 4*/
+Q: "前翅に白色紋があり前脚の基節にイボ状突起が3個ある？",
+A: new Array("○","×"),
+To: new Array( "kobetu.php?id=169","5"),
+fig: "img/fig.png"
+},
+{ /*設問 5*/
+Q: "前脚の基節か腿節に斑がある？",
+A: new Array("○","×"),
+To: new Array( "7","8"),
+fig: "img/fig.png"
+},
+{ /*設問 6*/
+Q: "中,後脚に葉状突起がある？",
+A: new Array("○","×"),
+To: new Array( "kobetu.php?id=171","kobetu.php?id=170"),
+fig: "img/fig.png"
+},
+{ /*設問 7*/
+Q: "前脚の内側に黒い帯がある？",
+A: new Array("○","×"),
+To: new Array( "kobetu.php?id=172","kobetu.php?id=168"),
+fig: "img/fig.png"
+},
+{ /*設問 8*/
+Q: "後翅の紫褐色斑が広い？",
+A: new Array("○","×"),
+To: new Array( "kobetu.php?id=166","kobetu.php?id=167"),
+fig: "img/fig.png"
+}
+);
+
+
+
+
+
+var QList2 = new Array(
+{ /*設問0はありませんので！*/
+Q: "あああ<br>",
+A: new Array("a","","b",""),
+To: new Array( "1","","2",""),
+fig: "img/fig.png"
+},
+
+
+{ /*設問 1*/
+Q: "前脚脛節に耳がある？",
+A: new Array("○","×"),
+To: new Array( "3","2"),
+fig: "img/fig.png"
+},
+{ /*設問 2*/
+Q: "後脚脛節先端にあるいくつかのトゲは長く<br>第1ふ節の半分以上の長さ",
+A: new Array("○","×"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 3*/
+Q: "体長30mm以上？",
+A: new Array("○","×"),
+To: new Array( "5","4"),
+fig: "img/fig.png"
+},
+{ /*設問 4*/
+Q: "前脚脛節下面に長く鋭いトゲがある？",
+A: new Array("○","×"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 5*/
+Q: "前脚脛節下面に長く鋭いトゲがある？",
+A: new Array("○","×"),
+To: new Array( "1","6"),
+fig: "img/fig.png"
+},
+{ /*設問 6*/
+Q: "後脚が前翅から突出する？",
+A: new Array("○","×"),
+To: new Array( "7","9"),
+fig: "img/fig.png"
+},
+{ /*設問 7*/
+Q: "顔が",
+A: new Array("丸い","尖る"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 8*/
+Q: "前脚脛節の耳が",
+A: new Array("丸い","線状"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+}
+);
+
+var QList3 = new Array(
+{ /*設問0はありませんので！*/
+Q: "あああ<br>",
+A: new Array("a","","b",""),
+To: new Array( "1","","2",""),
+fig: "img/fig.png"
+},
+
+
+{ /*設問 1*/
+Q: "翅が透き通る？",
+A: new Array("○","×"),
+To: new Array( "3","2"),
+fig: "img/fig.png"
+},
+{ /*設問 2*/
+Q: "全長(頭～翅端)が50mm以上？",
+A: new Array("○","×"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 3*/
+Q: "畳んだ後翅が角状に飛び出す？",
+A: new Array("○","×"),
+To: new Array( "1","4"),
+fig: "img/fig.png"
+},
+{ /*設問 4*/
+Q: "前胸背にW字の模様があり、全長(頭～翅端)50mm以上？",
+A: new Array("○","×"),
+To: new Array( "5","6"),
+fig: "img/fig.png"
+},
+{ /*設問 5*/
+Q: "前胸背の黄色い縁取りが途切れる？",
+A: new Array("○","×"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 6*/
+Q: "全長(頭～翅端)55mm以上？",
+A: new Array("55mm以上","50mm以下"),
+To: new Array( "7","8"),
+fig: "img/fig.png"
+},
+{ /*設問 7*/
+Q: "見た目が？",
+A: new Array("全身黒褐色","頭や前胸背に緑色が混じる"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 8*/
+Q: "前翅の褐色紋が",
+A: new Array("1列","2列"),
+To: new Array( "10","9"),
+fig: "img/fig.png"
+},
+{ /*設問 9*/
+Q: "腹端が白色？",
+A: new Array("○","×"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+},
+{ /*設問 10*/
+Q: "前翅の紋が",
+A: new Array("2個","4個"),
+To: new Array( "11","1"),
+fig: "img/fig.png"
+},
+{ /*設問 11*/
+Q: "オスの腹弁が",
+A: new Array("縦に長い","まんじゅう型"),
+To: new Array( "1","1"),
+fig: "img/fig.png"
+}
+);
+/******** 設問分岐の関数 ********/
+function flipQ( IdxQ , IdxTo ){
+if( IdxTo.match(/\D/) ){ // IdxQ に数字以外のが含まれる場合（URL）
+location.href = IdxTo;
+return 0;
+}
+document.getElementById("Q_"+IdxQ+"_Back").style.display="none";
+document.getElementById("Q_"+IdxTo+"_Back").style.display="block";
+return 0;
+}
+function backQ(IdxQ){
+	IdxTo = IdxQ-1;
+	document.getElementById("Q_"+IdxQ+"_Back").style.display="none";
+	document.getElementById("Q_"+IdxTo+"_Back").style.display="block";
+	return 0;
+}
+var n=1;
+/******** 設問の欄を自動書き出し ********/
+	for( var i=0 ; i<QList1.length ; i++ ){ // 設問の数だけ繰り返し
+		document.write(' <div id="Q_'+i+'_Back" class="Q_Back" ');
+		document.write(' style="display:none;"> ');
+		if(i>0){
+			document.write(' <div class="Q_No">'+i+' / '+QList1.length+'</div>');
+		}
+		document.write(' <div class="Q">'+QList1[i]["Q"]+'</div> ');
+		document.write(' <div class="under"><ul class="A"> ');
+
+		for( var j=0 ; j<QList1[i]["A"].length ; j++ ){ // 選択肢の数だけ繰り返し
+		document.write(' <li> ');
+		document.write(' <a href="#" ');
+		document.write(' onclick="flipQ(\''+i+'\',\''+QList1[i]["To"][j]+'\')"> ');
+		document.write( QList1[i]["A"][j]+'</a> ');
+		document.write(' </li> ');
+		}
+		document.write(' <br clear="all"> ');
+		document.write(' </ul> ');
+		
+		document.write(' <div class="fig"><img src='+QList1[i]["fig"]+' width="240"></div></div> ');
+		if(i>1){
+		document.write(' <div class="back"><img src="img/back.png" onclick="backQ(\''+i+'\')"></div>');
+		}
+document.write(' </div> ');
+}
+document.write(' </div> ');
+document.write(' <div class="flow"><img src="img/kama.png"></div>');
+
+/* 設問1から表示 */
+document.getElementById("Q_1_Back").style.display="block";
+
+--></script>
+</body>
+</html>

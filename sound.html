@@ -1,0 +1,204 @@
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<style type="text/css">
+body{font-family:メイリオ;}
+#sound{left:50%;}
+.rist-menu {
+	list-style: none;
+	overflow: hidden;
+	width: 300px;
+	padding: 0;
+}
+.rist-menu li {
+	list-style: none;
+	overflow: hidden;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #283546;
+}
+.rist-menu li:last-child {
+	border-bottom: 0px;
+}
+.rist-menu li a {
+	display: block;
+	position: relative;
+	z-index: 10;
+	height: 40px;
+	margin: 0;
+	padding: 0px 10px 0px 50px;
+	background: #196090;
+	color: #fff;
+	font-size: 14px;
+	line-height: 40px;
+	font-weight: bold;
+	text-decoration: none;
+}
+.rist-menu li a:hover {
+	background: #196090;
+}
+.rist-menu li a {
+	padding: 0px 10px 0px 30px;
+}
+.rist-menu li a:before {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 8px;
+	height: 40px;
+	background: #3498db;
+	transition: .3s;
+	z-index: -1;
+}
+.rist-menu li a:hover:before {
+	width: 300px;
+}
+
+#controller{background:#283546;width:300px;margin:-10px 0 0 0;position: relative;}
+img{vertical-align: middle;}
+#ctime,#title{display: inline;color:#fff;vertical-align: middle;}
+#ctime{font-size:4px;}
+#title{float:right;padding:13px 0 0 0;}
+ul{padding:0;}
+
+.effect i {
+  height: 120px;
+  padding: 20px;
+  font-size: 100px;
+  transition: .8s;
+} 
+.effect div {
+  margin: 200px;
+  transition: .8s;
+  transition-delay: .8s;
+}
+.wrap{
+  width: 350px;
+  margin: 0 auto;
+  padding: 50px 0 100px;
+  color: #fff;
+  text-align: center;
+}
+.wrap li{
+  list-style: none;
+  float: left;
+  margin: 0;
+  padding: 0 5px;
+  width:20px;
+}
+.wrap a{
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50%;
+  background: #3498db;
+  transition: .3s;
+}
+.wrap a:hover{
+  background: #196090;
+}
+.wrap a span{
+  position: absolute;
+  opacity: 0;
+  top: -20px;
+  left: -20px;
+  width: 60px;
+  padding: 10px;
+  border-radius: 2px;
+  background: #196090;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  transition: .3s;
+  -webkit-transform: rotateX(-90deg);
+  transform: rotateX(90deg);
+}
+.wrap a:hover span{
+  opacity: 1;
+  top: -40px;
+  -webkit-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+</style>
+<script type="text/javascript">
+
+
+
+
+</script>
+<div id="sound">
+	<div id="playListArea"></div>
+	<div id="controller">
+		<img src="img/play.png" id="playButton" width="50">
+		<div id="ctime">0:00</div><div id="title">名前</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+// 再生するファイルリスト
+var fileList = [
+    { name : 'エンマコオロギ', url : 'mp3/enma.mp3' },
+    { name : 'スズムシ', url : 'mp3/suzu.mp3' },
+    { name : 'カンタン', url : 'mp3/kantan.mp3' },
+    { name : 'カネタタキ', url : 'mp3/kanetataki.mp3' }
+];
+// Audioオブジェクト
+var audioObj = new Audio();
+var playFlag = false;
+// 再生するプレイリストを表示
+var playList = '<ul class="rist-menu">';
+for(var i=0; i<fileList.length; i++){
+    playList += '<li><a onclick=start_music("'+fileList[i].url+'","'+fileList[i].name+'")>';
+    playList += fileList[i].name + '</a></li>';
+}
+playList += '</ul>';
+document.getElementById("playListArea").innerHTML = playList;
+// 再生開始
+function start_music(url,name){
+    audioObj.pause(); // これがないと以前の音楽は停止しない
+    audioObj = new Audio(url);
+    audioObj.play();
+    audioObj.addEventListener('timeupdate', function(){
+    	var sec = '0' + Math.floor(audioObj.currentTime % 60);  // 秒数
+		var min = '0' + Math.floor(audioObj.currentTime / 60);  // 分数
+		sec = sec.substr(sec.length-2, 2);
+		min = min.substr(min.length-2, 2);
+		var totalSec = '0' + Math.floor(audioObj.duration % 60);    // 秒数
+		var totalMin = '0' + Math.floor(audioObj.duration / 60);    // 分数
+    	totalSec = totalSec.substr(totalSec.length-2, 2);
+ 	    totalMin = totalMin.substr(totalMin.length-2, 2);
+    	ctime.innerHTML = min+":"+sec+' / '+ totalMin+':'+totalSec ;
+    }, true);
+    playFlag = true;    // 再生フラグ：再生中にする
+    pButton.src = 'img/stop.png';
+    title.innerHTML = name;
+}
+var pButton = document.getElementById('playButton');
+
+pButton.addEventListener('click', function(){
+    if (playFlag == false){
+        playFlag = true;    // 再生フラグ：再生中にする
+        audioObj.play();
+        pButton.src = 'img/stop.png';
+    }else{
+        playFlag = false; // 再生フラグ：停止中にする
+        audioObj.pause();
+        pButton.src = 'img/play.png';
+    }
+}, true);
+-->
+</script>
+
+<ul class="wrap">
+  <li><a href="#" class="home"><span>Home!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span></a></li>
+  <li><a href="#" class="twitter"><span>Twitter</span></a></li>
+  <li><a href="#" class="facebook"><span>Facebook</span></a></li>
+  <li><a href="#" class="rss"><span>RSS</span></a></li>
+  <li><a href="#" class="cog"><span>Setting</span></a></li>
+</ul>
+

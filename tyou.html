@@ -1,0 +1,32 @@
+<style type="text/css">
+body{
+	font-family:メイリオ；
+}
+.mes{
+	font-size: 24px;
+}
+</style>
+<script type="text/javascript"><!--
+
+function bui(mes){
+	document.getElementById('ex').innerHTML = mes;
+}
+
+--></script>
+<div id="fig">
+	<center><img src="tyou2.png" id="tyou" alt="チョウ" usemap="#sample"></center>
+
+	<map name="sample">
+		<area shape="circle" coords="31,52,13" onclick="bui('前翅頂(ぜんしちょう)')">
+		<area shape="circle" coords="76,193,13" onclick="bui('前翅後角(ぜんしこうかく)')">
+		<area shape="circle" coords="167,362,13" onclick="bui('後翅後角(こうしこうかく)')">
+		<area shape="poly" coords="82,361,95,379,73,419,62,421,54,405" onclick="bui('尾状突起(びじょうとっき)')">
+		<area shape="rect" coords="234,256,263,367" onclick="bui('腹')">
+		<area shape="poly" coords="30,30,10,55,55,221,227,221,234,180,176,100,103,36" onclick="bui('前翅(ぜんし)')">
+		<area shape="poly" coords="102,212,65,258,73,336,101,384,148,409,196,362,233,247,226,211" onclick="bui('後翅(こうし)')">
+		<area shape="rect" coords="274,205,418,216" onclick="bui('内縁(ないえん)')">
+		<area shape="poly" coords="469,50,455,85,436,183,424,201,431,216,448,182,467,89,482,52" onclick="bui('外縁(がいえん)')">
+		<area shape="poly" coords="476,45,460,33,430,32,404,41,366,67,309,121,265,181,270,190,318,130,375,75,410,53" onclick="bui('前縁(ぜんえん)')">
+	</map>
+	<div class="mes"><center><p id="ex"></p></center></div>
+</div>

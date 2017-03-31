@@ -1,0 +1,258 @@
+<html>
+<head>
+<title>Insect guide</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" >
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link rel='stylesheet' media='screen and (max-width: 700px)' href='css/medium.css'>
+<link rel='stylesheet' media='screen and (min-width: 701px)' href='css/medium.css'>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_JIS">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+function pageTop(){
+	$(function(){
+		$('body,html').animate({scrollTop: 0}, 500);
+    	return false;
+    });
+}
+function pageBottom(){
+	$(function(){
+		$('body,html').delay(100).animate({scrollTop: $(document).height()}, 500);
+    	return false;
+    });
+}
+
+function hover(){
+	$(function(){
+		$('img').css({
+			"opacity":"1"
+    	});
+    });
+}
+function out(){
+	$(function(){
+		$('img').css({
+			"opacity":"0.3"
+    	});
+    });
+}
+//ページトップ
+$(function() {
+    var topBtn = $('#page-top');    
+    topBtn.css('marginRight', '-100px');
+    //スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            topBtn.not(':animated').animate({'marginRight' : '20px'}, 200); 
+        } else {
+            topBtn.not(':animated').animate({'marginRight' : '-100px'}, 200); 
+        }
+    });
+});
+
+
+//スライドメニュー
+$(function() {
+    $('#button').on('click',function(){
+     if($('.menu-trigger').hasClass('active')){
+      $('.menu-trigger').removeClass('active');
+     }else{
+      $('.menu-trigger').addClass('active');
+     }
+     
+     if($('#slide_menu').hasClass('off')){
+      $('#slide_menu').removeClass('off');
+      $('#slide_menu').animate({'marginLeft':'200px'},300).addClass('on');
+     }else{
+      $('#slide_menu').removeClass('on');
+      $('#slide_menu').addClass('off');
+      $('#slide_menu').animate({'marginLeft':'0px'},300);
+     }
+    });
+});
+//画面変更したら閉じる
+$(function() {
+    $('a.close').on('click',function(){
+      $('#slide_menu').removeClass('on');
+      $('#slide_menu').addClass('off');
+      $('.menu-trigger').removeClass('active');
+      $('#slide_menu').animate({'marginLeft':'0px'},300);
+     
+    });
+});
+$(function() {
+    $('iframe').contents().find('.btn').on('click',function(){
+      $('#slide_menu').removeClass('on');
+      $('#slide_menu').addClass('off');
+      $('#slide_menu').animate({'marginLeft':'0px'},300);
+     
+    });
+});
+
+//アコーディオン
+$(function(){
+        $('.sub_menu').hide();        
+        $('.main_menu').click(function(){
+                $('ul.sub_menu').slideUp();
+                if($('+ul.sub_menu',this).css('display') == 'none'){
+                        $('+ul.sub_menu',this).slideDown();
+                }
+        });
+});
+
+function adjust_frame_css(F){
+  if(document.getElementById(F)) {
+	var myF = document.getElementById(F);
+	var myC = myF.contentWindow.document.documentElement;
+	var myH = 100;
+    if(document.all) {
+      myH  = myC.scrollHeight;
+    } else {
+      myH = myC.offsetHeight;
+    }
+    myF.style.height = myH+"px";
+    var x = window.nakami.x ; 
+  	var y = document.getElementById('nakami').contentWindow.y ; 
+  	document.getElementById('x').innerHTML = x;
+ 	document.getElementById('y').innerHTML = y;
+  }
+}
+//リスト並び替え
+$(function(){
+    $("#menu").sortable({
+      revert: true
+    });
+    $("ul, li").disableSelection();
+});
+
+$(function(){
+  // 入力キー配列
+  input_cmd = [];
+  // コナミコマンド配列 [↑, ↑, ↓, ↓, ←, →, ←, →, B, A]
+  konami_cmd = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+ 
+  // キー入力後のキーアップイベントで発動条件を監視します
+  $(window).keyup(function(event){
+    // 入力されたキーのコード
+    var keyCode = event.keyCode;
+    // 入力キー配列へ追加
+    input_cmd.push(keyCode);
+ 
+    // 入力されたキーが正しいか判定
+    if ( input_cmd[input_cmd.length - 1] != konami_cmd[input_cmd.length - 1] ) {
+      // 間違っている場合、入力キー配列をリセット（やり直し）
+      input_cmd = [];
+    }
+    // 合っている場合、かつ完全に入力が終了したら処理発動
+    else if ( input_cmd.length == konami_cmd.length ) {
+      // コナミコマンド発動！
+      konami_cmd_action();
+ 
+      // 処理後、改めて入力キー配列をリセット
+      input_cmd = [];
+    }
+  });
+ 
+});
+ 
+// コナミコマンド処理関数
+function konami_cmd_action() {
+jQuery(function($){
+    $('body').animate({zIndex:1},{
+      duration: 1500,
+      easing: "linear",
+      step: function(now,fx){ $(this).css("transform", "rotate(" + (now*360) + "deg)"); },
+      complete:function(){$("body").css("zIndex", 0);}
+    });
+  });
+}
+});
+
+
+onload=function(){
+  var x = window.nakami.x ; 
+  var y = nakami.document.getElementById('nakami').contentWindow.y ; 
+  document.getElementById('x').innerHTML = x;
+  document.getElementById('y').innerHTML = y;
+};
+</script>
+</head>
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+<div id="wa">
+	<div id="Btn">
+		<a id="button" class="menu-trigger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+	</div>
+	<div id="Btn2">
+		<p id="page-top"><a href="#wrap"><img id="derect" src="img/derect.png" usemap="#derect"></a></p>
+		<map name="derect">
+			<area shape="rect" coords="22,0,42,21" onmouseover="hover()" onMouseOut="out()" onclick="pageTop()">
+			<area shape="rect" coords="22,42,42,63" onmouseover="hover()" onMouseOut="out()" onclick="pageBottom()">
+			<area shape="rect" coords="0,22,21,42" onmouseover="hover()" onMouseOut="out()" onclick="left()">
+			<area shape="rect" coords="42,22,63,42" onmouseover="hover()" onMouseOut="out()" onclick="right()">
+		</map>
+	</div>
+</div>
+<div id="header">
+	<div class="scrollmask">Insect Guide</div>
+</div>
+
+<div id="main">
+	<div id="slide_menu" class="off">
+    <ul id="menu">
+    	<li><div class="main_menu"><a class="close" href="top.html" target="nakami">HOME</a></div></li>
+    	<li><div class="main_menu">マイページ</div>
+    	<ul class="sub_menu">
+        	<li class="sub"><a class="close" href="mylist.php" target="nakami">マイリスト</a></li>
+        	<li class="search" style="padding: 0 20px 0 0;">
+        	<span id="x"></span>/<span id="y"></span>
+        	<iframe name="mypage" src="mypage.html" frameborder="0" width="200" height="350" scrolling="no"></iframe>
+        	</li>
+        </ul>
+    	
+    	</li>
+    	<li><div class="main_menu">ツール</div>
+    		<ul class="sub_menu"><li class="search" style="padding: 0 20px 0 0;">
+    		<iframe name="tool" src="tool.html" frameborder="0" width="200" height="350" scrolling="no" ></iframe>
+			</li></ul>
+    	</li>
+        <li><div class="main_menu">検索</div>
+        	<ul class="sub_menu">
+        		<li class="search"><iframe name="input" src="input.html" frameborder="0" width="200" height="390" scrolling="no"></iframe></li>
+        	</ul>
+        </li>
+        <li><div class="main_menu">探索</div>
+        	<ul class="sub_menu">
+       			<li class="sub"><a class="close" href="カマキリ分岐.html" target="nakami">カマキリ</a></li>
+       			<li class="sub"><a class="close" href="キリギリス分岐.html" target="nakami">キリギリス</a></li>
+        		<li class="sub"><a class="close" href="セミ分岐.html" target="nakami">セミ</a></li>
+        	</ul>
+        </li>
+        <li><div class="main_menu"><a class="close" href="edit.php" target="nakami">編集</a></div></li>
+        <li><div class="main_menu">部位</div>
+        	<ul class="sub_menu">
+       			<li class="sub"><a class="close" href="bui/tyou.html" target="nakami">チョウ</a></li>
+       			<li class="sub"><a class="close" href="#" target="nakami">バッタ</a></li>
+        		<li class="sub"><a class="close" href="#" target="nakami">カメムシ</a></li>
+        	</ul>
+        </li>
+        <li><div class="main_menu"><a class="close" href="hikaku.html" target="nakami">比較</a></div></li>
+        <li><div class="main_menu"><a class="close" href="keiziban.php" target="nakami">掲示板</a></div></li>
+        <li><div class="main_menu"><a class="close" href="map.html" target="nakami">地図</a></div></li>
+        <li><div class="main_menu"><a class="close" href="sound.html" target="nakami">音声</a></div></li>
+        <li><div class="main_menu"><a class="close" href="FullscreenSlitSlider/index.html">解説</a></div></li>
+    </ul>
+	</div>
+		
+	<div class="nakami">
+		<iframe id="nakami" class="autoHeight" name="nakami" onLoad="adjust_frame_css(this.id)" frameborder="0" width="100%" height="100%" src="top.html"></iframe>
+	</div>
+</div>
+</body>
+</html>

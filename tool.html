@@ -1,0 +1,176 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" >
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<style type="text/css">
+body{
+	font-family:メイリオ；
+}
+div.ui-datepicker {
+	margin:0 0 0 7px;
+    font-size: 60%;
+}
+.ui-widget-content {
+  border: 2px ridge #fff;
+  background: #bbddd0;
+  color: #fff;
+}
+
+.ui-widget-content a {
+  color: #fff;
+}
+.ui-widget-header {
+  border: 1px solid white;
+  background: #3c7170;
+  color: white;
+  font-weight: bold;
+}
+.ui-widget-header a {
+  color: white;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid #3c7170;
+  background: #fff;
+  font-weight: normal;
+  color: #3c7170;
+  border-radius:3px;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: black;
+  text-decoration: none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #fff;
+  background: #55b190;
+  font-weight: normal;
+  color: #fff;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+  color: black;
+  text-decoration: none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid #fff;
+  background: #3c7170;
+  font-weight: normal;
+  color: #fff;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: black;
+  text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+  background: #58a7a5;
+}
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+  border: 1px solid #fff;
+  background: #8ace73;
+  font-weight: normal;
+  color: #fff;
+}
+.ui-state-highlight a,
+.ui-state-highlight a:link,
+.ui-state-highlight a:visited {
+  color: black;
+  text-decoration: none;
+}
+.btn{
+background:#3c7170;
+color:#fff;
+cursor:pointer;
+border-radius:10px;
+float:right;
+margin:0 20px 0 0;
+}
+.num{
+border: 2px ridge #fff;
+height:20px;
+}
+#timer, #random, #count{
+float:left;
+font-weight: bold;
+color:#fff;
+margin:0 20px;
+
+}
+</style>
+<script type="text/javascript">
+//カレンダー
+$(function(){
+    $("#datepicker").datepicker();
+});
+
+myButton = 0;	// [Start]/[Stop]のフラグ
+function myCheck(){	
+	if (myButton==0){	// Startボタンを押した
+	myStart=new Date();	// スタート時間を退避
+	myButton = 1;	
+	document.myForm.myFormButton.value = "Stop!";	
+	myInterval=setInterval("myDisp()",1);	
+	}else{	// Stopボタンを押した
+	myDisp();	
+	myButton = 0;	
+	document.myForm.myFormButton.value = "Start";	
+	clearInterval( myInterval );	
+	}	
+}	
+function myDisp(){	
+myStop=new Date();	// 経過時間を退避
+myTime = myStop.getTime() - myStart.getTime();	// 通算ミリ秒計算
+myH = Math.floor(myTime/(60*60*1000));	// '時間'取得
+myTime = myTime-(myH*60*60*1000);	
+myM = Math.floor(myTime/(60*1000));	// '分'取得
+myTime = myTime-(myM*60*1000);	
+myS = Math.floor(myTime/1000);	// '秒'取得
+myMS = myTime%1000;	// 'ミリ秒'取得
+document.myForm.myFormTime.value = myH+":"+myM+":"+myS+":"+myMS;
+document.getElementById('timer').innerHTML = myH+":"+myM+":"+myS+":"+myMS;
+}
+
+function random(){
+	var rand =Math.floor(Math.random() * 10);
+	document.getElementById('random').innerHTML = rand;
+}
+var count = 0;
+function countUp(){
+	count++;
+	document.getElementById('count').innerHTML = count;
+}
+function countDown(){
+	count--;
+	document.getElementById('count').innerHTML = count;
+}
+</script>
+
+<div id="datepicker"></div>
+<br>
+<form name="myForm">
+<input type="hidden" name="myFormTime">
+<div class="num"><span id="timer">0:0:0:000</span>
+<input type="button" class="btn" value="Start" name="myFormButton" onclick="myCheck()"></div>
+</form>
+<div class="num"><span id="random">1-10</span>
+<input type="button" class="btn" value="ﾗﾝﾀﾞﾑ" onclick="random()"></div><br>
+<div class="num"><span id="count">0</span>
+<input type="button" class="btn" value="↓" onclick="countDown()">
+<input type="button" class="btn" value="↑" onclick="countUp()" style="margin: 0;"></div>
+<br>

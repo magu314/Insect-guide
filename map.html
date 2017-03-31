@@ -1,0 +1,166 @@
+<style type="text/css">
+#sample{
+	width:700px;
+	height:400px;
+}
+form {
+    margin-bottom: 1px;
+    float:left;
+}
+.btn, .btn2{
+background:#3c7170;
+color:#fff;
+cursor:pointer;
+border-radius:10px;
+}
+.btn2{
+padding:0;
+}
+input#address{
+   border-radius: 5px;
+   border:#a9a9a9 1px solid;
+   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2),0 0 2px rgba(0,0,0,0.3);
+}
+</style>
+<script type="text/javascript">
+var marker;
+var geocoder;
+
+function initMap() {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': "日本"
+    }, function(results, status) { // 結果
+        if (status === google.maps.GeocoderStatus.OK) { // ステータスがOKの場合
+        	var bounds = new google.maps.LatLngBounds();
+        	
+            map = new google.maps.Map(document.getElementById('sample'), {
+                center: results[0].geometry.location, // 地図の中心を指定
+                zoom: 5 // 地図のズームを指定
+            });
+            google.maps.event.addListener(map, 'click', clickEventFunc);
+            
+            function clickEventFunc(event) {
+      			alert(event.latLng.toString());
+   			}
+   			
+   			var patharray = new Array();//四国
+      		patharray[0] = new google.maps.LatLng(32.6, 132.2);
+      		patharray[1] = new google.maps.LatLng(34.1, 132.5);
+      		patharray[2] = new google.maps.LatLng(34.4, 134.6);
+      		patharray[3] = new google.maps.LatLng(32.9, 134.8);
+
+      		// Polygonの初期設定
+      		var polygonOpts = {
+       		map: map,
+        	paths: patharray
+      		};
+      		// 直前で作成したPolygonOptionsを利用してPolygonを作成
+      		var polygon = new google.maps.Polygon(polygonOpts);
+        } else { // 失敗した場合
+           alert(status);
+        }
+    });
+}
+
+function getLatLng(place) {
+
+  // ジオコーダのコンストラクタ
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({
+    address: place
+  }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+
+      // 結果の表示範囲。結果が１つとは限らないので、LatLngBoundsで用意。
+      var bounds = new google.maps.LatLngBounds();
+
+      for (var i in results) {
+        if (results[i].geometry) {
+
+          // 緯度経度を取得
+          var latlng = results[i].geometry.location;
+
+          // 住所を取得(日本の場合だけ「日本, 」を削除)
+          var address = results[i].formatted_address.replace(/^日本, /, '');
+
+          // 検索結果地が含まれるように範囲を拡大
+          bounds.extend(latlng);
+
+          // あとはご自由に・・・。
+          new google.maps.InfoWindow({
+            content: address + "<br>(Lat, Lng) = " + latlng.toString()
+          }).open(map, new google.maps.Marker({
+            position: latlng,
+            map: sample
+          }));
+        }
+      }
+      // 範囲を移動
+      map.fitBounds(bounds);
+    }
+  });
+}
+
+
+//情報
+function content(){
+function attachMessage(marker, msg) {
+    google.maps.event.addListener(marker, 'click', function(event) {
+      new google.maps.InfoWindow({
+        content: msg
+      }).open(marker.getMap(), marker);
+    });
+  }
+// 位置情報と表示データの組み合わせ
+  var data = new Array();
+  data.push({position: new google.maps.LatLng(35.3382315, 139.4463897), content: 'オサレ'});
+  data.push({position: new google.maps.LatLng(35.3388553, 139.4646549), content: '半端な位置'});
+  data.push({position: new google.maps.LatLng(35.3388728, 139.4874751), content: '工事中'});
+
+  var myMap = new google.maps.Map(document.getElementById('sample'), {
+    zoom: 14,
+    center: new google.maps.LatLng(35.3388553, 139.4646549),
+    scrollwheel: false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  var patharray = new Array();
+      		patharray[0] = new google.maps.LatLng(35.3382315, 139.4463897);
+      		patharray[1] = new google.maps.LatLng(35.3388728, 139.4874751);
+      		patharray[2] = new google.maps.LatLng(35.3368728, 139.4874751);
+      		patharray[3] = new google.maps.LatLng(35.3362728, 139.4464751);
+
+      		// Polygonの初期設定
+      		var polygonOpts = {
+       		map: myMap,
+        	paths: patharray
+      		};
+      		// 直前で作成したPolygonOptionsを利用してPolygonを作成
+      		var polygon = new google.maps.Polygon(polygonOpts);
+  
+
+  for (i = 0; i < data.length; i++) {
+    var myMarker = new google.maps.Marker({
+      position: data[i].position,
+      map: myMap
+    });
+    attachMessage(myMarker, data[i].content);
+  }
+
+}
+
+
+
+</script>
+<body>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+<div id="sample"></div>
+<FORM onsubmit="getLatLng(document.getElementById('address').value); return(false);" action=#><INPUT id=address style="width: 200px">
+<INPUT type=submit class="btn" value="検索"></FORM>
+
+<input class="btn" type="submit" value="情報" onclick="content()">
+<span id="lat"></span>
+<span id="lng"></span>
+</body>

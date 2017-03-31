@@ -1,0 +1,172 @@
+<html lang="ja">
+<head>
+<meta charset="sjis">
+<title>jQuery UI Slider - Range slider</title>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" >
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<style type="text/css">
+.ui-slider .ui-slider-handle {
+    position: static;
+    z-index: 2;
+	color:#282828;
+	width:10px;
+	height:10px;
+	cursor:pointer;
+}
+.ui-widget-header {
+    border: 1px solid #aaaaaa;
+    background: #bbddd0 url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
+    color: #222222;
+    font-weight: bold;
+}
+.s{
+font-weight: bolder;
+color:#fff;
+background:#55a788; 
+width:180px;
+}
+.btn, .btn2{
+background:#3c7170;
+color:#fff;
+cursor:pointer;
+border-radius:10px;
+}
+.searchBtn{width:20px;height:20px;background:url('img/search.png')no-repeat scroll 0 0;
+border-radius:10px;}
+select{
+	border-radius:5px;
+}
+input[type=text]{
+   border-radius: 5px;
+   border:#a9a9a9 1px solid;
+   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2),0 0 2px rgba(0,0,0,0.3);
+}
+ 
+input[type=text]:focus {
+   border:solid 1px #fff;
+}
+
+</style>
+
+<script>
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 100,
+      values: [ 30, 50 ],
+      slide: function( event, ui ) {
+        $( "#min" ).val( ui.values[ 0 ]);
+        $( "#max" ).val( ui.values[ 1 ]);
+      }
+    });
+  });
+  
+  $(function() {
+    $( "#slider-range2" ).slider({
+      range: true,
+      min: 1,
+      max: 12,
+      values: [ 4, 7 ],
+      slide: function( event, ui ) {
+        $( "#start" ).val( ui.values[ 0 ]);
+        $( "#finish" ).val( ui.values[ 1 ]);
+      }
+    });
+  });
+
+
+</script>
+</head>
+<body>
+<div class="s">
+<form name="search" method="post" action="search.php" target="nakami">
+<input type="text" name="tag" size="10" placeholder="タグ">
+<input type="submit" class="searchBtn" value="">
+</form>
+
+<form name="search" method="post" action="search2.php" target="nakami">
+   目 <select name="moku">
+		<option value="0">(指定なし)</option>
+		<option value="チョウ目" >チョウ目</option>
+		<option value="ゴキブリ目" >ゴキブリ目</option>
+		<option value="カマキリ目" >カマキリ目</option>
+		<option value="バッタ目" >バッタ目</option>
+		<option value="ナナフシ目" >ナナフシ目</option>
+		<option value="ハサミムシ目" >ハサミムシ目</option>
+		<option value="カメムシ目" >カメムシ目</option>
+		<option value="カゲロウ目" >カゲロウ目</option>
+		<option value="トンボ目" >トンボ目</option>
+		<option value="カゲゲラ目" >カワゲラ目</option>
+		<option value="トビゲラ目" >トビケラ目</option>
+		<option value="アミメカゲロウ目" >アミメカゲロウ目</option>
+		<option value="コウチュウ目" >コウチュウ目</option>
+		<option value="シリアゲムシ目" >シリアゲムシ目</option>
+		<option value="ハチ目" >ハチ目</option>
+		<option value="ハエ目" >ハエ目</option>
+	</select>
+  
+  <br>
+  <br>
+  科 <input type="text" name="family" size="10" placeholder="シジミ">
+  <br>
+  <br>
+  和名 <input type="text" name="name" size="10" placeholder="アゲハ">
+  <br>
+  <br>
+  <label for="amount">サイズ:</label>
+  <input type="text" id="min" name="min" style="width:20px" placeholder="30">mm～
+  <input type="text" id="max" name="max" style="width:30px" placeholder="50">mm
+  <div id="slider-range" style="width: 150px;"></div>
+  <br>
+  <label for="amount">出現時期:</label>
+  <input type="text" id="start" name="start" style="width:20px" placeholder="4">月～
+  <input type="text" id="finish" name="finish" style="width:20px" placeholder="7">月
+  <div id="slider-range2" style="width: 150px;"></div>
+  <br>
+  色彩 <select name="color">
+  	<option value="0">(指定なし)</option>
+  	<option value="0">(指定なし)</option>
+  	<option value="白" style="background:#fff"></option>
+  	<option value="薄茶" style="background:#eed099"></option>
+  	<option value="黄緑" style="background:#99cc00"></option>
+  	<option value="緑" style="background:#008000"></option>
+  	<option value="水" style="background:#87cefa"></option>
+  	<option value="青" style="background:#191970"></option>
+ 	<option value="黄" style="background:#ffd900"></option>
+ 	<option value="橙" style="background:#ff8c00"></option>
+ 	<option value="茶" style="background:#98623c"></option>
+ 	<option value="濃茶" style="background:#583822"></option>
+ 	<option value="黒" style="background:#000"></option>
+ 	</select>
+  <br>
+  <br>
+  生息地 <select name="habitat">
+  	<option value="0">(指定なし)</option>
+  	<option value="街中">街中</option>
+ 	<option value="平地">平地</option>
+ 	<option value="丘陵">丘陵</option>
+ 	<option value="低山">低山</option>
+ 	<option value="山">山</option>
+ 	<option value="河原">河原</option>
+ 	<option value="海岸">海岸</option>
+ 	</select>
+  <br>
+  <br>
+  並び順 <select name="sort">
+  	<option value="id">種類</option>
+ 	<option value="name">和名</option>
+ 	<option value="min">小さい</option>
+ 	<option value="max">大きい</option>
+ 	</select>
+ 	<br>
+ 	<br>
+  <input class="btn" type="submit" name="submit" value="検索">
+  <input class="btn2" type="reset" value="条件クリア">
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<style type="text/css">
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background:#55a788;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+
+#result{list-style:none;margin:0;padding:0;}
+
+li {float:left;margin:10px;}
+.btn{clear:both;}
+p{margin:0;}
+#remove{
+background:#3c7170;
+color:#fff;
+cursor:pointer;
+border-radius:10px;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $("#result").sortable({
+      revert: true
+    });
+    $("ul, li").disableSelection();
+});
+</script>
+<html>
+<body>
+<ul id="result">
+</ul>
+<div class="btn">
+<input type="button" id="remove" value="íœ">
+</div>
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$.cookie.json = true;
+	var cookParam = $.cookie("push"),
+    resultElm = $('#result');
+    
+    for(i=0;i<cookParam.length;i++){
+    	list ='<li><p><a href="kobetu.php?id='+cookParam[i]+'"><img src="img/zukan/'+cookParam[i]+'.png" width="100"></a></p></li>';
+    	resultElm.append(list)
+    }
+});
+$('#remove').click(function(){
+    $.removeCookie("push");
+    location.reload();
+});
+-->
+</script>
+</body>
+</html>

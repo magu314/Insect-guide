@@ -1,0 +1,26 @@
+#up{
+width:400px;
+height:390px;
+overflow:hidden;
+padding:3px;
+}
+
+#right,#left{
+float: left;
+width:200px;
+height:150px;
+overflow:hidden;
+padding:3px;
+}
+
+.frame{
+height:100%;
+width:100%;
+}
+.btn{
+background:#3c7170;
+color:#fff;
+cursor:pointer;
+border-radius:10px;
+}
+.ui-resizable-helper { border: 2px dotted #00F; }

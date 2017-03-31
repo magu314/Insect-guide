@@ -1,0 +1,223 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<style type="text/css">
+::-webkit-scrollbar {
+    width: 7px;
+    height:7px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background:#55a788;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+}
+
+#carouselWrap{
+    margin:10px auto;
+    width:660px;
+    height:440px;
+    padding:5px;
+    border:1px solid #DBDBDB;
+    position:relative;
+}
+#carouselPrev{
+    position:absolute;
+    top:600px;
+    left:-110px;
+    cursor:pointer;
+    zoom: 0.3;
+}
+#carouselNext{
+    position:absolute;
+    top:600px;
+    right:-110px;
+    cursor:pointer;
+    zoom: 0.3;
+}
+#carouse{
+    overflow:hidden;
+}
+#carouselInner ul.column{
+    width:660px;
+    height:440px;
+    list-style-type:none;
+    float:left;
+}
+#carouselInner ul.column li{
+    float:left;
+    display:inline; 
+}
+#carouselInner ul.column li img{
+	margin:-20px 0 0 -80px;
+    border:none;
+    z-index:-1;
+}
+.gly li {
+	position: absolute;
+	border-radius: 50% 50%;
+	width: 100px;
+	height: 100px;
+	border: 3px solid #fff;
+	overflow: hidden;
+	box-shadow: 0 0 10px #999;
+}
+.gly li.move1 img{
+	margin:-16px 0 0 -20px;
+}
+.gly li.move2 img{
+	margin:-16px 0 0 -30px;
+}
+.gly li.move0 img{
+	margin:-16px 0 0 -30px;
+}
+
+.gly li.move1, .gly li.move2, .gly li.move3 {
+	animation: moveY 2s infinite alternate linear, moveX 12s infinite alternate linear;
+	-ms-animation: moveY 2s infinite alternate linear, moveX 12s infinite alternate linear;
+	-webkit-animation: moveY 2s infinite alternate linear, moveX 12s infinite alternate linear;
+	-moz-animation: moveY 2s infinite alternate linear, moveX 12s infinite alternate linear;
+}
+.gly li.move2 {
+	margin: 150px 0 0 -100px;
+	position: absolute;
+	animation: moveY 3s infinite alternate linear, moveX 14s infinite alternate linear;
+	-ms-animation: moveY 3s infinite alternate linear, moveX 14s infinite alternate linear;
+	-webkit-animation: moveY 3s infinite alternate linear, moveX 14s infinite alternate linear;
+	-moz-animation: moveY 3s infinite alternate linear, moveX 14s infinite alternate linear;
+	-webkit-animation-delay: 2s;
+}
+.gly li.move0 {
+	margin: 300px 0 0 -200px;
+	position: absolute;
+	animation: moveY 4s infinite alternate linear, moveX 16s infinite alternate linear;
+	-ms-animation: moveY 4s infinite alternate linear, moveX 16s infinite alternate linear;
+	-webkit-animation: moveY 4s infinite alternate linear, moveX 16s infinite alternate linear;
+	-moz-animation: moveY 4s infinite alternate linear, moveX 16s infinite alternate linear;
+	-webkit-animation-delay: 4s;
+}
+@-webkit-keyframes moveY /* Safari and Chrome */
+{
+0% {top:0px;}
+50% {	top:15px;}
+100% {top:0px;}
+}
+@-webkit-keyframes moveX /* Safari and Chrome */
+{
+0% {left:0px;}
+100% {left:88%;}
+}
+
+
+</style>
+<script type="text/javascript">
+	var x=0;
+	var y=0;
+<!--
+$(function(){
+
+    $("#carouselInner").css("width",660*$("#carouselInner ul.column").size()+"px");
+    $("#carouselInner ul.column:last").prependTo("#carouselInner");
+    $("#carouselInner").css("margin-left","-660px");
+    
+    $("#carouselPrev").click(function(){
+        $("#carouselNext,#carouselPrev").hide();
+        x++;
+        document.getElementById('x').innerHTML = x;
+        $("#carouselInner").animate({
+            marginLeft : parseInt($("#carouselInner").css("margin-left"))+660+"px"
+        },"slow","linear" , 
+        function(){
+            $("#carouselInner").css("margin-left","-660px");
+            $("#carouselInner ul.column:last").prependTo("#carouselInner");
+            $("#carouselNext,#carouselPrev").show();
+        });
+    });
+    
+    $("#carouselNext").click(function(){
+        $("#carouselNext,#carouselPrev").hide();
+        y++;
+        document.getElementById('y').innerHTML = y;
+        $("#carouselInner").animate({
+            marginLeft : parseInt($("#carouselInner").css("margin-left"))-660+"px"
+        },"slow","linear" , 
+        function(){
+            $("#carouselInner").css("margin-left","-660px");
+            $("#carouselInner ul.column:first").appendTo("#carouselInner");
+            $("#carouselNext,#carouselPrev").show();
+        });
+    });
+    
+    var timerID = setInterval(function(){
+    $("#carouselNext").click()
+    },5000);
+    
+    $("#carouselPrev img,#carouselNext img").click(function(){
+    clearInterval(timerID);
+    });
+    
+});
+
+-->
+</script>
+<div id="carouselWrap">
+    <p id="carouselPrev"><img src="img/back2.png" alt="前へ" ></p>
+    <p id="carouselNext"><img src="img/next2.png" alt="次へ" ></p>
+    <div id="carouse">
+        <div id="carouselInner">
+            <ul class="column">
+            <li><a href="#"><img src="img/p1.png"></a></li>
+            </ul>
+            <ul class="column">
+            <li><a href="#"><img src="img/p2.png"></a></li>
+            </ul>
+            <ul class="column">
+            <li><a href="#"><img src="img/p3.png"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>
+
+<script type="text/javascript"><!--
+jmp = new Array();
+img = new Array();
+// ジャンプ先のアドレス(数字は画像と対応)
+jmp[0] = "kobetu.php?id=1";
+jmp[1] = "kobetu.php?id=2";
+jmp[2] = "kobetu.php?id=3";
+jmp[3] = "kobetu.php?id=4";
+jmp[4] = "kobetu.php?id=5";
+jmp[5] = "kobetu.php?id=6";
+jmp[6] = "kobetu.php?id=7";
+jmp[7] = "kobetu.php?id=8";
+// 画像のアドレス(数字はジャンプ先のアドレスと対応)
+img[0] = "img/zukan/1.png";
+img[1] = "img/zukan/2.png";
+img[2] = "img/zukan/3.png";
+img[3] = "img/zukan/4.png";
+img[4] = "img/zukan/5.png";
+img[5] = "img/zukan/6.png";
+img[6] = "img/zukan/7.png";
+img[7] = "img/zukan/8.png";
+document.write("<ul class='gly'>");
+for(i=0;i<3;i++){
+n = Math.floor(Math.random()*jmp.length);
+document.write("<li class='move"+i+"'>");
+document.write("<a href='"+jmp[n]+"'>");
+document.write("<img src='"+img[n]+"' border='0' width='150px'>");
+document.write("</a></li>");
+}
+document.write("</ul>");
+
+-->
+</script>
+
+<span id="x">0</span>/<span id="y">0</span>
+
+</div>
