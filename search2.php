@@ -7,7 +7,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <style type="text/css">
 body{
-font-family:ƒƒCƒŠƒI;
+font-family:ãƒ¡ã‚¤ãƒªã‚ª;
 }
 ::-webkit-scrollbar {
     width: 7px;
@@ -99,13 +99,13 @@ $check = 0;
 $w="";
 $and = "";
 $where="";
-//ŒŸõğŒ¶¬
- //–Ú
+//æ¤œç´¢æ¡ä»¶ç”Ÿæˆ
+ //ç›®
  if($moku!=0){
 	$where=" moku like '%$moku%'";
 	$check++;
  }
- //‰È
+ //ç§‘
  if(!empty($family)){
  	if($check>0){
  		$and = 'and';
@@ -117,7 +117,7 @@ $where="";
  }else{
  	$where .="";
  }
- //˜a–¼
+ //å’Œå
  if(!empty($name)){
  	if($check>0){
  		$and = 'and';
@@ -129,7 +129,7 @@ $where="";
  }else{
  	$where .="";
  }
- //‘å‚«‚³
+ //å¤§ãã•
  if(empty($min) && empty($max)){
  	$where .="";
  }else{
@@ -147,7 +147,7 @@ $where="";
  	$where .=" $and min >= $min";
  }
  
- //oŒ»Šú
+ //å‡ºç¾æ™‚æœŸ
  
   if(empty($start) && empty($finish)){
  	$where .="";
@@ -166,36 +166,36 @@ $where="";
  	$where .=" $and start > $start";
   }
  
- //F
+ //è‰²
  if(!empty($color)){
  	if($check>0){
  		$and = 'and';
  	}else{
  		$w =" where";
  	}
- 	$where .=" $and color like '$color' || color2 like '$color'";
+ 	$where .=" $and color like '$color' OR color2 like '$color'";
  	$check++;
  }else{
  	$where .="";
  }
  
- //¶‘§’n
+ //ç”Ÿæ¯åœ°
  if(!empty($habitat)){
  	if($check>0){
  		$and = 'and';
  	}else{
  		$w =" where";
  	}
- 	if(($habitat)=="ŠX’†"){
+ 	if(($habitat)=="è¡—ä¸­"){
  		$where .=" $and low like '$habitat'";
- 	}else if(($habitat)=="•½’n"){
- 		$where .=" $and low like 'ŠX’†' || low like '$habitat' ";
- 	}else if(($habitat)=="‹u—Ë"){
- 		$where .=" $and (low like 'ŠX’†' || low like '•½’n' || low like '$habitat') && 
- 				   (high like 'R' || high like '’áR' || high like '$habitat')";
- 	}else if(($habitat)=="’áR"){
- 		$where .=" $and high like '$habitat' || high like 'R' ";
- 	}else if(($habitat)=="R"){
+ 	}else if(($habitat)=="å¹³åœ°"){
+ 		$where .=" $and low like 'è¡—ä¸­' OR low like '$habitat' ";
+ 	}else if(($habitat)=="ä¸˜é™µ"){
+ 		$where .=" $and (low like 'è¡—ä¸­' OR low like 'å¹³åœ°' OR low like '$habitat') and 
+ 				   (high like 'å±±' OR high like 'ä½å±±' OR high like '$habitat')";
+ 	}else if(($habitat)=="ä½å±±"){
+ 		$where .=" $and high like '$habitat' OR high like 'å±±' ";
+ 	}else if(($habitat)=="å±±"){
  		$where .=" $and high like '$habitat'";
  	}
  	$check++;
@@ -219,7 +219,7 @@ $data = $pdo ->prepare($query);
 $data -> execute();
 
 $logcount = $data->rowCount();
-print('ƒqƒbƒg”:');
+print('ãƒ’ãƒƒãƒˆæ•°:');
 print($logcount);
 print('<div id="db">');
 	
@@ -233,15 +233,15 @@ while($row = $data->fetch(PDO::FETCH_ASSOC)){
     print('<table border=none class="db_sub">');
     print('<tr><td>ID</td><td><a href="kobetu.php?id='.$row["id"].'" target="nakami">'.$row['id'].'</td></tr>');
     //print('<tr><td colspan="2"><img src="img/zukan/'.$row["id"].'.png" width="150px"></tr>');
-    print('<tr><td>–Ú</td><td>'.$row['moku'].'</td></tr>');
-    print('<tr><td>‰È</td><td>'.$row['family'].'</td></tr>');
-    print('<tr><td>˜a–¼</td><td>'.$row['name'].'</td></tr>');
-    print('<tr><td>ƒTƒCƒY</td><td>'.$row['min'].'`'.$row['max'].'</td></tr>');
-    print('<tr><td>Šú</td><td>'.$row['start'].'`'.$row['finish'].'</td></tr>');
-    print('<tr><td>FÊ</td><td>'.$row['color'].'/'.$row['color2'].'</td></tr>');
-    print('<tr><td>¶‘§’n</td><td>'.$row['low'].'`'.$row['high'].'</td></tr>');
-    print('<tr><td></td><td><a class="rl" href="kobetu.php?id='.$row["id"].'" target="left">©</a>@
-    <a class="rl"href="kobetu.php?id='.$row["id"].'" target="right">¨</a></td></tr>');
+    print('<tr><td>ç›®</td><td>'.$row['moku'].'</td></tr>');
+    print('<tr><td>ç§‘</td><td>'.$row['family'].'</td></tr>');
+    print('<tr><td>å’Œå</td><td>'.$row['name'].'</td></tr>');
+    print('<tr><td>ã‚µã‚¤ã‚º</td><td>'.$row['min'].'ï½'.$row['max'].'</td></tr>');
+    print('<tr><td>æ™‚æœŸ</td><td>'.$row['start'].'ï½'.$row['finish'].'</td></tr>');
+    print('<tr><td>è‰²å½©</td><td>'.$row['color'].'/'.$row['color2'].'</td></tr>');
+    print('<tr><td>ç”Ÿæ¯åœ°</td><td>'.$row['low'].'ï½'.$row['high'].'</td></tr>');
+    print('<tr><td></td><td><a class="rl" href="kobetu.php?id='.$row["id"].'" target="left">â†</a>ã€€
+    <a class="rl"href="kobetu.php?id='.$row["id"].'" target="right">â†’</a></td></tr>');
     print('</table>');
     print('</div></td>');
     $count++;
@@ -249,7 +249,7 @@ while($row = $data->fetch(PDO::FETCH_ASSOC)){
     	print('<tr>');
     	if($count%5==0){
     		$table++;
-    		print('</table><div id="more'.$table.'"><br><a class="motto" href="#" onclick="loadmore('.$table.')">‚à‚Á‚ÆI</a></div></div>');
+    		print('</table><div id="more'.$table.'"><br><a class="motto" href="#" onclick="loadmore('.$table.')">ã‚‚ã£ã¨ï¼</a></div></div>');
     		print('<div id="db'.$table.'" style="display:none;"><table class="db'.$table.'">');
     	}
     }
@@ -258,7 +258,7 @@ print('</table>');
 print('</div>');
 
 }catch(PDOEXCEPTION $Exception){
-	die('Ú‘±ƒGƒ‰[<br>'.$Exception -> getMessage());
+	die('æ¥ç¶šã‚¨ãƒ©ãƒ¼<br>'.$Exception -> getMessage());
 }
 	$pdo = null;
 
